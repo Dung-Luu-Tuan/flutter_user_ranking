@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
+import 'list_view.dart';
+
 class BottomNavigation extends StatelessWidget {
-  const BottomNavigation({super.key});
+  const BottomNavigation({super.key, required this.isPost});
+
+  final bool isPost;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +36,7 @@ class BottomNavigation extends StatelessWidget {
                   child: Container(
                     margin: const EdgeInsets.only(right: 10, left: 10),
                     child: Image.asset(
-                      'assets/images/category/category icon-34.png',
+                      'assets/images/category/${isPost ? lists[0].avatar : lists2[0].avatar}',
                       width: 50,
                       height: 50,
                     ),
@@ -46,8 +50,11 @@ class BottomNavigation extends StatelessWidget {
                         flex: 0,
                         child: Container(
                           margin: const EdgeInsets.only(top: 0, left: 0),
-                          child: const Text('VietNam',
-                              style: TextStyle(
+                          child: Text(
+                              isPost
+                                  ? lists[0].name.toString()
+                                  : lists2[0].name.toString(),
+                              style: const TextStyle(
                                 fontSize: 12,
                                 fontWeight: FontWeight.w800,
                                 fontFamily: 'Roboto',

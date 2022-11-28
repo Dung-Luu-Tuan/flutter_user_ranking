@@ -52,9 +52,9 @@ class ListViewDetail extends StatelessWidget {
                           flex: 0,
                           child: Container(
                             margin: const EdgeInsets.only(top: 0, left: 0),
-                            child: Text(detail.name.toString(),
+                            child: Text(detail.name,
                                 style: const TextStyle(
-                                  fontSize: 12,
+                                  fontSize: 15,
                                   fontWeight: FontWeight.w800,
                                   fontFamily: 'Roboto',
                                   color: Colors.black,
@@ -67,10 +67,10 @@ class ListViewDetail extends StatelessWidget {
                             margin: const EdgeInsets.only(top: 5, bottom: 5),
                             child: Text('${detail.posts.toString()} posts',
                                 style: const TextStyle(
-                                    fontSize: 10,
+                                    fontSize: 12,
                                     fontWeight: FontWeight.w800,
                                     fontFamily: 'Roboto',
-                                    color: Colors.yellow)),
+                                    color: Color.fromARGB(255, 255, 174, 0))),
                           ),
                         ),
                       ],
@@ -84,8 +84,9 @@ class ListViewDetail extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) =>
-                              SecondRoute(s: list[detail.index].toString())),
+                          builder: (context) => SecondRoute(
+                              s: list[detail.index].toString(),
+                              detail: detail.name)),
                     );
                   },
                   child: SvgPicture.asset(

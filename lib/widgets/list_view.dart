@@ -21,8 +21,20 @@ final lists = List.generate(
   ),
 );
 
+final lists2 = List.generate(
+  96,
+  (i) => DetailListView(
+    i,
+    'category icon-18.png',
+    'JAPAN',
+    2000,
+  ),
+);
+
 class RankingList extends StatelessWidget {
-  const RankingList({super.key});
+  const RankingList({super.key, required this.isPost});
+
+  final bool isPost;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -35,7 +47,8 @@ class RankingList extends StatelessWidget {
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: 96,
                 itemBuilder: (BuildContext context, int index) {
-                  return ListViewDetail(detail: lists[index]);
+                  return ListViewDetail(
+                      detail: isPost ? lists[index] : lists2[index]);
                 }),
           )
         ]));

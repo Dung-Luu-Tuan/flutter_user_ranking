@@ -37,6 +37,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   bool isReadMore = false;
+  bool isPost = true;
+  bool isYearly = true;
 
   @override
   Widget build(BuildContext context) {
@@ -66,44 +68,62 @@ class _MyHomePageState extends State<MyHomePage> {
                                 Row(
                                   children: <Widget>[
                                     Expanded(
-                                      child: Container(
-                                        height: 25,
-                                        decoration: BoxDecoration(
-                                          color: Colors.orange[400],
-                                          borderRadius:
-                                              BorderRadius.circular(8),
-                                        ),
-                                        child: const Center(
-                                          child: Text('POST',
-                                              textAlign: TextAlign.center,
-                                              style: TextStyle(
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.bold,
-                                                fontFamily: 'Roboto',
-                                                color: Color.fromARGB(
-                                                    255, 255, 255, 255),
-                                              )),
-                                        ),
-                                      ),
-                                    ),
+                                        child: InkWell(
+                                            onTap: () =>
+                                                setState(() => {isPost = true}),
+                                            child: Container(
+                                              height: 25,
+                                              decoration: BoxDecoration(
+                                                color: isPost
+                                                    ? Colors.orange[400]
+                                                    : Colors.white,
+                                                borderRadius:
+                                                    BorderRadius.circular(8),
+                                              ),
+                                              child: Center(
+                                                child: Text('POST',
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                      fontSize: 15,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontFamily: 'Roboto',
+                                                      color: isPost
+                                                          ? const Color
+                                                                  .fromARGB(255,
+                                                              255, 255, 255)
+                                                          : const Color
+                                                                  .fromARGB(255,
+                                                              202, 202, 202),
+                                                    )),
+                                              ),
+                                            ))),
                                     Expanded(
-                                      child: Container(
-                                        height: 25,
-                                        decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius:
-                                              BorderRadius.circular(12),
-                                        ),
-                                        child: const Center(
-                                          child: Text('WANT TO GO',
-                                              textAlign: TextAlign.center,
-                                              style: TextStyle(
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.bold,
-                                                fontFamily: 'Roboto',
-                                                color: Color.fromARGB(
-                                                    255, 202, 202, 202),
-                                              )),
+                                      child: InkWell(
+                                        onTap: () =>
+                                            setState(() => {isPost = false}),
+                                        child: Container(
+                                          height: 25,
+                                          decoration: BoxDecoration(
+                                            color: !isPost
+                                                ? Colors.orange[400]
+                                                : Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(12),
+                                          ),
+                                          child: Center(
+                                              child: Text('WANT TO GO',
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.bold,
+                                                    fontFamily: 'Roboto',
+                                                    color: !isPost
+                                                        ? const Color.fromARGB(
+                                                            255, 255, 255, 255)
+                                                        : const Color.fromARGB(
+                                                            255, 202, 202, 202),
+                                                  ))),
                                         ),
                                       ),
                                     ),
@@ -122,14 +142,19 @@ class _MyHomePageState extends State<MyHomePage> {
                                           borderRadius:
                                               BorderRadius.circular(12),
                                         ),
-                                        child: const Text('MONTHLY',
-                                            style: TextStyle(
-                                              fontSize: 10,
-                                              fontWeight: FontWeight.bold,
-                                              fontFamily: 'Roboto',
-                                              color: Color.fromARGB(
-                                                  255, 202, 202, 202),
-                                            )),
+                                        child: InkWell(
+                                            onTap: () => setState(
+                                                () => {isYearly = false}),
+                                            child: Text('MONTHLY',
+                                                style: TextStyle(
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontFamily: 'Roboto',
+                                                  color: !isYearly
+                                                      ? Colors.black
+                                                      : const Color.fromARGB(
+                                                          255, 202, 202, 202),
+                                                ))),
                                       ),
                                     ),
                                     Expanded(
@@ -142,16 +167,23 @@ class _MyHomePageState extends State<MyHomePage> {
                                           borderRadius:
                                               BorderRadius.circular(12),
                                         ),
-                                        child: const Text('YEARLY',
-                                            style: TextStyle(
-                                              fontSize: 10,
-                                              fontWeight: FontWeight.bold,
-                                              fontFamily: 'Roboto',
-                                              color: Colors.black,
-                                              decoration:
-                                                  TextDecoration.underline,
-                                              decorationColor: Colors.orange,
-                                            )),
+                                        child: InkWell(
+                                            onTap: () => setState(
+                                                () => {isYearly = true}),
+                                            child: Text('YEARLY',
+                                                style: TextStyle(
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontFamily: 'Roboto',
+                                                  color: isYearly
+                                                      ? Colors.black
+                                                      : const Color.fromARGB(
+                                                          255, 202, 202, 202),
+                                                  // decoration:
+                                                  //     TextDecoration.underline,
+                                                  // decorationColor:
+                                                  //     Colors.orange,
+                                                ))),
                                       ),
                                     ),
                                   ],
@@ -259,9 +291,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                     ),
                                   ],
                                 ),
-                                const TopRank(),
+                                TopRank(isPost: isPost, isYearly: isYearly),
                               ])),
-                      const RankingList(),
+                      RankingList(isPost: isPost),
                       SizedBox(
                         width: 500,
                         child: Column(
@@ -307,7 +339,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       )
                     ],
                   )))),
-      bottomNavigationBar: const BottomNavigation(),
+      bottomNavigationBar: BottomNavigation(isPost: isPost),
       backgroundColor: Colors.yellow[200],
     );
   }

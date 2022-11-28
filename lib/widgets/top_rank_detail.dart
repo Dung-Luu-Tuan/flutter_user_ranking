@@ -47,12 +47,12 @@ class TopRankDetail extends StatelessWidget {
         children: <Widget>[
           Padding(
             padding:
-                EdgeInsets.only(top: topRank[detail.top]!['padding'] as double),
+                EdgeInsets.only(top: topRank[detail.top]?['padding'] as double),
             child: SvgPicture.asset(
-              'assets/images/icon/${topRank[detail.top]!['icon']}',
+              'assets/images/icon/${topRank[detail.top]?['icon']}',
               width: 25,
               height: 25,
-              color: topRank[detail.top]!['color'] as Color,
+              color: topRank[detail.top]?['color'] as Color,
             ),
           ),
           Expanded(
@@ -62,7 +62,7 @@ class TopRankDetail extends StatelessWidget {
               decoration: const BoxDecoration(
                 color: Colors.white,
               ),
-              child: Text('${topRank[detail.top]!['rank']}',
+              child: Text('${topRank[detail.top]?['rank']}',
                   style: const TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.w800,
@@ -75,8 +75,8 @@ class TopRankDetail extends StatelessWidget {
             flex: 0,
             child: Image.asset(
               'assets/images/category/${detail.avatar}',
-              width: topRank[detail.top]!['size'] as double,
-              height: topRank[detail.top]!['size'] as double,
+              width: topRank[detail.top]?['size'] as double,
+              height: topRank[detail.top]?['size'] as double,
             ),
           ),
           Expanded(

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import 'list_view.dart';
-import 'main.dart';
+import '../screens/list_view_screen.dart';
 
 class ListViewDetail extends StatelessWidget {
   const ListViewDetail({super.key, required this.detail});

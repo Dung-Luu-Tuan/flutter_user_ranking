@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:testproject/term.dart';
-import 'package:testproject/top_rank.dart';
+import 'package:testproject/widgets/term.dart';
+import 'package:testproject/widgets/top_rank.dart';
 
-import 'list_view.dart';
+import 'widgets/bottom_navigation.dart';
+import 'widgets/list_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -306,106 +307,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       )
                     ],
                   )))),
-      bottomNavigationBar: Container(
-        height: 70,
-        decoration: BoxDecoration(
-          color: Theme.of(context).primaryColor,
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            Row(
-              children: <Widget>[
-                Expanded(
-                    flex: 0,
-                    child: Container(
-                      margin: const EdgeInsets.only(left: 40),
-                      child: const Text("7",
-                          style: TextStyle(
-                            fontSize: 10,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'Roboto',
-                            color: Colors.white,
-                          )),
-                    )),
-                Expanded(
-                    flex: 0,
-                    child: Container(
-                      margin: const EdgeInsets.only(right: 10, left: 10),
-                      child: Image.asset(
-                        'assets/images/category/category icon-34.png',
-                        width: 50,
-                        height: 50,
-                      ),
-                    )),
-                Expanded(
-                    flex: 0,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          flex: 0,
-                          child: Container(
-                            margin: const EdgeInsets.only(top: 0, left: 0),
-                            child: const Text('VietNam',
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w800,
-                                  fontFamily: 'Roboto',
-                                  color: Colors.black,
-                                )),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 0,
-                          child: Container(
-                            margin: const EdgeInsets.only(top: 5, bottom: 5),
-                            child: const Text('1413 posts',
-                                style: TextStyle(
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.w800,
-                                    fontFamily: 'Roboto',
-                                    color: Colors.white)),
-                          ),
-                        ),
-                      ],
-                    )),
-              ],
-            ),
-            Row(
-              children: const [],
-            )
-          ],
-        ),
-      ),
+      bottomNavigationBar: const BottomNavigation(),
       backgroundColor: Colors.yellow[200],
-    );
-  }
-}
-
-class SecondRoute extends StatelessWidget {
-  const SecondRoute({super.key, required this.s});
-
-  final String s;
-
-  @override
-  Widget build(BuildContext context) {
-    final ButtonStyle style =
-        ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 50));
-
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Second Route'),
-      ),
-      body: Center(
-        child: ElevatedButton(
-          style: style,
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: Text("The user rank is: $s"),
-        ),
-      ),
     );
   }
 }

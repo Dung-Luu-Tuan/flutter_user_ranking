@@ -13,37 +13,162 @@ class SecondRoute extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final ButtonStyle style =
-    //     ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 50));
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Second Route'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Expanded(
-              flex: 0,
-              child: Image.asset(
-                'assets/images/category/${detail == 'VIETNAM' ? 'category icon-34.png' : 'category icon-18.png'}',
-                width: 200,
-                height: 200,
+      body: PageView(
+        children: <Widget>[
+          makePage(
+            page: 1,
+            image: 'vietnam1',
+            title: "Ninh Binh",
+            description:
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+          ),
+          makePage(
+            page: 2,
+            image: 'vietnam2',
+            title: "Ninh Binh",
+            description:
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+          ),
+          makePage(
+            page: 3,
+            image: 'vietnam3',
+            title: "Ninh Binh",
+            description:
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget makePage({image, title, page, description}) {
+    return Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          fit: BoxFit.cover,
+          image: AssetImage('assets/images/icon/$image.jpg'),
+        ),
+      ),
+      child: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.bottomRight,
+            colors: [
+              Colors.black.withOpacity(.7),
+              Colors.black.withOpacity(.2)
+            ],
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.baseline,
+                textBaseline: TextBaseline.alphabetic,
+                children: <Widget>[
+                  Text(
+                    page.toString(),
+                    style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  const Text(
+                    "/3",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  )
+                ],
               ),
-            ),
-            Expanded(
-                flex: 0,
-                child: Padding(
-                  padding: const EdgeInsets.all(25.0),
-                  child: Text(detail == 'VIETNAM' ? vietnam : japan,
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      title,
                       style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w800,
-                          fontFamily: 'Roboto',
-                          color: Colors.black)),
-                ))
-          ],
+                        color: Colors.white,
+                        fontSize: 40,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20.0,
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Container(
+                          margin: const EdgeInsets.only(right: 5.0),
+                          child: const Icon(
+                            Icons.star,
+                            color: Colors.yellow,
+                            size: 15,
+                          ),
+                        ),
+                        Container(
+                          margin: const EdgeInsets.only(right: 5.0),
+                          child: const Icon(
+                            Icons.star,
+                            color: Colors.yellow,
+                            size: 15,
+                          ),
+                        ),
+                        Container(
+                          margin: const EdgeInsets.only(right: 5.0),
+                          child: const Icon(
+                            Icons.star,
+                            color: Colors.yellow,
+                            size: 15,
+                          ),
+                        ),
+                        Container(
+                          margin: const EdgeInsets.only(right: 5.0),
+                          child: const Icon(
+                            Icons.star,
+                            color: Colors.yellow,
+                            size: 15,
+                          ),
+                        ),
+                        Container(
+                          margin: const EdgeInsets.only(right: 5.0),
+                          child: const Icon(
+                            Icons.star,
+                            color: Colors.yellow,
+                            size: 15,
+                          ),
+                        ),
+                        const Text(
+                          "5.0",
+                          style: TextStyle(
+                            color: Colors.white60,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 20.0,
+                    ),
+                    Text(
+                      description,
+                      style: const TextStyle(
+                          color: Colors.white54, height: 2.0, fontSize: 16),
+                    )
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

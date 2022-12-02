@@ -55,61 +55,49 @@ class TopRankDetail extends StatelessWidget {
               color: topRank[detail.top]?['color'] as Color,
             ),
           ),
-          Expanded(
-            flex: 0,
-            child: Container(
-              margin: const EdgeInsets.only(top: 5, bottom: 5),
-              decoration: const BoxDecoration(
-                color: Colors.white,
-              ),
-              child: Text('${topRank[detail.top]?['rank']}',
-                  style: const TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w800,
-                    fontFamily: 'Roboto',
-                    color: Colors.black,
-                  )),
+          Container(
+            margin: const EdgeInsets.only(top: 5, bottom: 5),
+            decoration: const BoxDecoration(
+              color: Colors.white,
             ),
+            child: Text('${topRank[detail.top]?['rank']}',
+                style: const TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w800,
+                  fontFamily: 'Roboto',
+                  color: Colors.black,
+                )),
           ),
-          Expanded(
-            flex: 0,
-            child: Image.asset(
-              'assets/images/category/${detail.avatar}',
-              width: topRank[detail.top]?['size'] as double,
-              height: topRank[detail.top]?['size'] as double,
-            ),
+          Image.asset(
+            'assets/images/category/${detail.avatar}',
+            width: topRank[detail.top]?['size'] as double,
+            height: topRank[detail.top]?['size'] as double,
           ),
-          Expanded(
-            flex: 0,
-            child: Container(
-              margin: const EdgeInsets.only(top: 5, bottom: 5),
-              decoration: const BoxDecoration(
-                color: Colors.white,
-              ),
-              child: Text(detail.name,
-                  style: const TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w800,
-                    fontFamily: 'Roboto',
-                    color: Colors.black,
-                  )),
+          Container(
+            margin: const EdgeInsets.only(top: 5, bottom: 5),
+            decoration: const BoxDecoration(
+              color: Colors.white,
             ),
+            child: Text(detail.name,
+                style: const TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w800,
+                  fontFamily: 'Roboto',
+                  color: Colors.black,
+                )),
           ),
-          Expanded(
-            flex: 0,
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Text('${detail.posts.toString()} posts',
-                  style: const TextStyle(
-                    fontSize: 10,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Roboto',
-                    color: Colors.orange,
-                  )),
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(12),
             ),
+            child: Text('${detail.posts.toString()} posts',
+                style: const TextStyle(
+                  fontSize: 10,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Roboto',
+                  color: Colors.orange,
+                )),
           ),
         ],
       ),

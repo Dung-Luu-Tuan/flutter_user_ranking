@@ -31,26 +31,71 @@ final lists2 = List.generate(
   ),
 );
 
-class RankingList extends StatelessWidget {
+class RankingList extends StatefulWidget {
   const RankingList({super.key, required this.isPost});
-
   final bool isPost;
+
+  @override
+  State<RankingList> createState() => _RankingListState();
+}
+
+class _RankingListState extends State<RankingList> {
+  late ScrollController controller;
+  @override
+  void initState() {
+    super.initState();
+    controller = ScrollController()..addListener(_scrollListener);
+  }
+
+  @override
+  void dispose() {
+    controller.removeListener(_scrollListener);
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-        margin: const EdgeInsets.only(top: 20),
-        child: Column(children: <Widget>[
-          SizedBox(
-            width: 500,
-            height: 8700, // constrain height
-            child: ListView.builder(
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: 96,
-                itemBuilder: (BuildContext context, int index) {
-                  return ListViewDetail(
-                      detail: isPost ? lists[index] : lists2[index]);
-                }),
-          )
-        ]));
+    // return Column(
+    //   children: ((isPost ? lists : lists2)
+    //       .map((value) => ListViewDetail(detail: value))).toList(),
+    // );
+
+    return Scrollbar(
+      child: ListView.builder(
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: widget.isPost ? lists.length : lists2.length,
+          shrinkWrap: true,
+          primary: false,
+          itemBuilder: (BuildContext context, int index) {
+            final item = (widget.isPost ? lists[index] : lists2[index]);
+            return ListViewDetail(detail: item);
+          }),
+    );
+
+    // return ListView.builder(
+    //     physics: const NeverScrollableScrollPhysics(),
+    //     itemCount: lists.length,
+    //     shrinkWrap: true,
+    //     primary: false,
+    //     itemBuilder: (BuildContext context, int index) {
+    //       final item = (widget.isPost ? lists[index] : lists2[index]);
+    //       return ListViewDetail(detail: item);
+    //     });
+  }
+
+  void _scrollListener() {
+    if (controller.position.extentAfter < 100) {
+      setState(() {
+        (widget.isPost ? lists : lists2).addAll(List.generate(
+          5,
+          (index) => DetailListView(
+            index,
+            'category icon-18.png',
+            'JAPAN',
+            2000,
+          ),
+        ));
+      });
+    }
   }
 }
